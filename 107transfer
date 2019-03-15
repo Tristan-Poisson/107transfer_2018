@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+##
+## EPITECH PROJECT, 2019
+## 107transfer
+## File description:
+## math
+##
+
+import sys
+import math
+
+def check_for_err():
+    halp = open("help", "r")
+
+    if len(sys.argv) > 1 and sys.argv[1] == "-h":
+        print(halp.read())
+        sys.exit(0)
+
+def main():
+    check_for_err()
+
+if __name__ == "__main__":
+    main()
