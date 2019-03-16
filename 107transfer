@@ -15,9 +15,42 @@ def check_for_err():
     if len(sys.argv) > 1 and sys.argv[1] == "-h":
         print(halp.read())
         sys.exit(0)
+    if (len(sys.argv) <= 2 or (len(sys.argv) - 1) % 2 != 0):
+        sys.stdout.write("Invalid number of argument\n")
+        sys.exit(84)
 
+def find_num(a1, a2):
+    try:
+        num = [int(s) for s in a1.split('*')]
+        denum = [int(s) for s in a2.split('*')]
+    except ValueError:
+        sys.stdout.write("Invalid argument\n");
+        sys.exit(84)
+    return (num, denum)
+
+def make_calc(num, denum, x):
+    result = sum(num[i] * x ** i for i in range(len(num)))
+    result = result / (sum(denum[i] * x ** i for i in range(len(denum))))
+    return (result)
+
+def calc():
+    x = 0.0
+    res = 1.0
+    a = 1
+
+    while (x < 1.001):
+        while (a < len(sys.argv) - 1):
+            num, denum = find_num(sys.argv[a], sys.argv[a + 1])
+            res = res * make_calc(num, denum, x)
+            a += 2
+        print('{:.3f} -> {:.5f}'.format(x, res))
+        x += 0.001
+        a = 1
+        res = 1.0
+        
 def main():
     check_for_err()
+    calc()
 
 if __name__ == "__main__":
     main()
