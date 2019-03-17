@@ -16,7 +16,7 @@ def check_for_err():
         print(halp.read())
         sys.exit(0)
     if (len(sys.argv) <= 2 or (len(sys.argv) - 1) % 2 != 0):
-        sys.stdout.write("Invalid number of argument\n")
+        sys.stdout.write("Invalid number of argument try -h\n")
         sys.exit(84)
 
 def find_num(a1, a2):
@@ -24,7 +24,7 @@ def find_num(a1, a2):
         num = [int(s) for s in a1.split('*')]
         denum = [int(s) for s in a2.split('*')]
     except ValueError:
-        sys.stdout.write("Invalid argument\n");
+        sys.stdout.write("Invalid argument try -h\n");
         sys.exit(84)
     return (num, denum)
 
